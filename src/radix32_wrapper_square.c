@@ -923,7 +923,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += iroot;				/* 2*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA01 =rt;	sA01 =it;
 
 	re= rt;	im= it;	/* Save for the wrapper Step... */
@@ -932,7 +932,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += iroot;				/* 3*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA02 =rt;	sA02 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
@@ -940,34 +940,34 @@ jump_in:	/* Entry point for all blocks but the first. */
 		iroot = l;				/* 7*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA03 =rt;	sA03 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		l += iroot;				/* 14*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA07 =rt;	sA07 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		l += iroot;				/* 21*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA0E =rt;	sA0E =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		l += iroot;				/* 28*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA15 =rt;	sA15 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1C =rt;	sA1C =it;
 
 		/*(c,s)4-10 (decimal indices), 4-0A (hexadecimal indices):	*/
@@ -1020,7 +1020,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += iroot;			/* 2*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB01 =rt;	sB01 =it;
 
 	if(j1 == 0){ re= rt;	im= it; }   /* The j1 = 0 case is special... */
@@ -1029,7 +1029,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += iroot;				/* 3*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB02 =rt;	sB02 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
@@ -1037,34 +1037,34 @@ jump_in:	/* Entry point for all blocks but the first. */
 		iroot = l;				/* 7*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB03 =rt;	sB03 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		l += iroot;				/* 14*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB07 =rt;	sB07 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		l += iroot;				/* 21*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB0E =rt;	sB0E =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		l += iroot;				/* 28*iroot	*/
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB15 =rt;	sB15 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB1C =rt;	sB1C =it;
 
 		/*(c,s)4-10 (decimal indices), 4-0A (hexadecimal indices):	*/

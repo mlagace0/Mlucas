@@ -260,7 +260,8 @@ printf("radix8_dif_pass: nloops = %d  incr = %d  using %d th roots of unity.\n",
 		i += iroot;			/* 2*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0x8; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -274,7 +275,8 @@ printf("radix8_dif_pass: nloops = %d  incr = %d  using %d th roots of unity.\n",
 		i += iroot;			/* 3*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0x4; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -288,7 +290,8 @@ printf("radix8_dif_pass: nloops = %d  incr = %d  using %d th roots of unity.\n",
 		i += iroot;			/* 4*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0xc; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -302,7 +305,8 @@ printf("radix8_dif_pass: nloops = %d  incr = %d  using %d th roots of unity.\n",
 		i += iroot;			/* 5*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0x2; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -316,7 +320,8 @@ printf("radix8_dif_pass: nloops = %d  incr = %d  using %d th roots of unity.\n",
 		i += iroot;			/* 6*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0xa; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -330,7 +335,8 @@ printf("radix8_dif_pass: nloops = %d  incr = %d  using %d th roots of unity.\n",
 		i += iroot;			/* 7*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0x6; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -344,7 +350,8 @@ printf("radix8_dif_pass: nloops = %d  incr = %d  using %d th roots of unity.\n",
 		i += iroot;			/* 8*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0xe; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -721,7 +728,8 @@ void radix8_dit_pass(double a[], int n, struct complex rt0[], struct complex rt1
 		i += iroot;			/* 2*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0x8; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -735,7 +743,8 @@ void radix8_dit_pass(double a[], int n, struct complex rt0[], struct complex rt1
 		i += iroot;			/* 3*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0x4; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -749,7 +758,8 @@ void radix8_dit_pass(double a[], int n, struct complex rt0[], struct complex rt1
 		i += iroot;			/* 4*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0xc; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -763,7 +773,8 @@ void radix8_dit_pass(double a[], int n, struct complex rt0[], struct complex rt1
 		i += iroot;			/* 5*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0x2; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -777,7 +788,8 @@ void radix8_dit_pass(double a[], int n, struct complex rt0[], struct complex rt1
 		i += iroot;			/* 6*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0xa; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -791,7 +803,8 @@ void radix8_dit_pass(double a[], int n, struct complex rt0[], struct complex rt1
 		i += iroot;			/* 7*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0x6; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -805,7 +818,8 @@ void radix8_dit_pass(double a[], int n, struct complex rt0[], struct complex rt1
 		i += iroot;			/* 8*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);
+		it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = c0 + 0xe; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);

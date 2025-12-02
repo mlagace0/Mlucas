@@ -231,7 +231,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x26; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -245,7 +245,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x16; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -259,7 +259,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x36; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -273,7 +273,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x0e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -287,7 +287,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x2e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -301,7 +301,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x1e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -315,7 +315,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x3e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -329,7 +329,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x0a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -343,7 +343,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x2a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -357,7 +357,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x1a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -371,7 +371,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x3a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -385,7 +385,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x12; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -399,7 +399,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x32; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -413,7 +413,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x22; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -427,7 +427,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x42; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -441,7 +441,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x08; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -455,7 +455,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x28; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -469,7 +469,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x18; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -483,7 +483,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x38; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -497,7 +497,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x10; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -511,7 +511,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x30; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -525,7 +525,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x20; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -539,7 +539,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x40; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -553,7 +553,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x0c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -567,7 +567,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x2c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -581,7 +581,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x1c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -595,7 +595,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x3c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -609,7 +609,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x14; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -623,7 +623,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x34; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -637,7 +637,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x24; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -651,7 +651,7 @@ void radix32_dif_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x44; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1608,7 +1608,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x26; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1622,7 +1622,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x16; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1636,7 +1636,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x36; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1650,7 +1650,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x0e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1664,7 +1664,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x2e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1678,7 +1678,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x1e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1692,7 +1692,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x3e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1706,7 +1706,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x08; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1720,7 +1720,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x28; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1734,7 +1734,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x18; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1748,7 +1748,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x38; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1762,7 +1762,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x10; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1776,7 +1776,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x30; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1790,7 +1790,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x20; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1804,7 +1804,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x40; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1818,7 +1818,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x0a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1832,7 +1832,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x2a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1846,7 +1846,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x1a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1860,7 +1860,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x3a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1874,7 +1874,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x12; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1888,7 +1888,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x32; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1902,7 +1902,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x22; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1916,7 +1916,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x42; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1930,7 +1930,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x0c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1944,7 +1944,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x2c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1958,7 +1958,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x1c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1972,7 +1972,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x3c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1986,7 +1986,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x14; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2000,7 +2000,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x34; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2014,7 +2014,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x24; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2028,7 +2028,7 @@ void radix32_dit_pass(double a[], int n, struct complex rt0[], struct complex rt
 		i += iroot;
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	#ifdef USE_SSE2
 		c_tmp = cc0 + 0x44; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);

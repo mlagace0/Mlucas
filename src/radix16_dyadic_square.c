@@ -381,34 +381,34 @@ void radix16_dyadic_square(
 		l += iroot;			/* 2*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		c1 =rt;	s1 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		l += (iroot << 1);	/* 4*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		c2 =rt;	s2 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		l += (iroot << 2);	/* 8*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		c4 =rt;	s4 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		c8 =rt;	s8 =it;
 
 		k1=(l & NRTM1);	k2=(l >> NRT_BITS);
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		c13 =rt;	s13 =it;
 
 		/* c3,5 */

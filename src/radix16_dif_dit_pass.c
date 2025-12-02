@@ -868,7 +868,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 2*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c1, for inversion
 		*add1++ = it;	// s1  slot will hold __r1 = s1 /c1
 
@@ -876,7 +876,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 3*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c2, for inversion
 		*add1++ = it;	// s2  slot will hold __r2 = s2 /c2
 
@@ -884,7 +884,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 4*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*(add0-3) = rt;	// c3, for inversion ...
 		*add0++   = rt;	// place extra copy in 0-slot as described above - put on separate line to avoid ambiguity of *(add0-3) = *add0++ = rt
 		*add1++ = it;	// s3  slot will hold __r3 = s3 /c3
@@ -893,7 +893,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 5*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c4, for inversion
 		*add1++ = it;	// s4  slot will hold __r4 = s4 /c4
 
@@ -901,7 +901,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 6*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c5, for inversion
 		*add1++ = it;	// s5  slot will hold __r5 = s5 /c5
 		*add2++ = rt;	// c5, will get multiplied by 1/c1 to yield __c51
@@ -909,7 +909,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 7*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c6, for inversion
 		*add1++ = it;	// s6  slot will hold __r6 = s6 /c6
 		*add2++ = rt;	// c6, will get multiplied by 1/c2 to yield __c62
@@ -918,7 +918,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 8*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c7, for inversion
 		*add1++ = it;	// s7  slot will hold __r7 = s7 /c7
 		*add2++ = rt;	// c7, will get multiplied by 1/c3 to yield __c73
@@ -926,7 +926,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 9*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c8, for inversion
 		*add1++ = it;	// s8  slot will hold __r8 = s8 /c8
 
@@ -934,7 +934,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*10*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c9, for inversion
 		*add1++ = it;	// s9  slot will hold __r9 = s9 /c9
 		*add2++ = rt;	// c9, will get multiplied by 1/c1 to yield __c91
@@ -942,7 +942,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*11*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c10, for inversion
 		*add1++ = it;	// s10 slot will hold __rA = s10/c10
 		*add2++ = rt;	// cA, will get multiplied by 1/c2 to yield __cA2
@@ -950,7 +950,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*12*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c11, for inversion
 		*add1++ = it;	// s11 slot will hold __rB = s11/c11
 		*add2++ = rt;	// cB, will get multiplied by 1/c3 to yield __cB3
@@ -958,7 +958,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*13*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c12, for inversion
 		*add1++ = it;	// s12 slot will hold __rC = s12/c12
 		*add2++ = rt;	// cC, will get multiplied by 1/c4 to yield __cC4
@@ -966,7 +966,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*14*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c13, for inversion
 		*add1++ = it;	// s13 slot will hold __rD = s13/c13
 		*add2++ = rt;	// cD, will get multiplied by 1/c5 to yield __cD5
@@ -974,7 +974,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*15*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c14, for inversion
 		*add1++ = it;	// s14 slot will hold __rE = s14/c14
 		*add2++ = rt;	// cE, will get multiplied by 1/c6 to yield __cE6
@@ -982,7 +982,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		k1=(i & NRTM1);	k2=(i >> NRT_BITS);
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c15, for inversion
 		*add1++ = it;	// s15 slot will hold __rF = s15/c15
 		*add2++ = rt;	// cF, will get multiplied by 1/c7 to yield __cF7
@@ -1078,7 +1078,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 2*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x12; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1096,7 +1096,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 3*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0xa; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1109,7 +1109,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 4*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x1a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1126,7 +1126,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 5*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x6; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1144,7 +1144,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 6*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x16; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1157,7 +1157,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 7*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0xe; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1170,7 +1170,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 8*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x1e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1187,7 +1187,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/* 9*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x4; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1205,7 +1205,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*10*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x14; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1223,7 +1223,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*11*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0xc; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1236,7 +1236,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*12*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x1c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1249,7 +1249,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*13*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x8; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1266,7 +1266,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*14*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x18; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1284,7 +1284,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 		i += iroot;			/*15*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x10; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -1301,7 +1301,7 @@ notation below is low-to-high-[byte|word] within xmm-regs; '|' denotes dword bou
 	  #endif
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x20; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2282,7 +2282,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 2*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c1, for inversion
 		*add1++ = it;	// s1  slot will hold __r1 = s1 /c1
 
@@ -2290,7 +2290,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 3*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c2, for inversion
 		*add1++ = it;	// s2  slot will hold __r2 = s2 /c2
 
@@ -2298,7 +2298,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 4*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c3, for inversion
 		*add1++ = it;	// s3  slot will hold __r3 = s3 /c3
 
@@ -2306,7 +2306,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 5*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c4, for inversion
 		*add1++ = it;	// s4  slot will hold __r4 = s4 /c4
 
@@ -2314,7 +2314,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 6*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c5, for inversion
 		*add1++ = it;	// s5  slot will hold __r5 = s5 /c5
 
@@ -2322,7 +2322,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 7*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c6, for inversion
 		*add1++ = it;	// s6  slot will hold __r6 = s6 /c6
 
@@ -2330,7 +2330,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 8*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c7, for inversion
 		*add1++ = it;	// s7  slot will hold __r7 = s7 /c7
 
@@ -2338,7 +2338,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 9*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c8, for inversion
 		*add1++ = it;	// s8  slot will hold __r8 = s8 /c8
 
@@ -2346,7 +2346,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*10*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c9, for inversion
 		*add1++ = it;	// s9  slot will hold __r9 = s9 /c9
 
@@ -2354,7 +2354,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*11*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c10, for inversion
 		*add1++ = it;	// s10 slot will hold __rA = s10/c10
 
@@ -2362,7 +2362,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*12*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c11, for inversion
 		*add1++ = it;	// s11 slot will hold __rB = s11/c11
 
@@ -2370,7 +2370,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*13*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c12, for inversion
 		*add1++ = it;	// s12 slot will hold __rC = s12/c12
 
@@ -2378,7 +2378,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*14*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c13, for inversion
 		*add1++ = it;	// s13 slot will hold __rD = s13/c13
 
@@ -2386,14 +2386,14 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*15*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c14, for inversion
 		*add1++ = it;	// s14 slot will hold __rE = s14/c14
 
 		k1=(i & NRTM1);	k2=(i >> NRT_BITS);
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		*add0++ = rt;	// c15, for inversion
 		*add1++ = it;	// s15 slot will hold __rF = s15/c15
 
@@ -2466,7 +2466,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 2*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x12; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2484,7 +2484,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 3*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x0a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2497,7 +2497,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 4*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x1a; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2514,7 +2514,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 5*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x06; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2532,7 +2532,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 6*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x16; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2545,7 +2545,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 7*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x0e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2558,7 +2558,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 8*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x1e; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2575,7 +2575,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/* 9*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x04; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2593,7 +2593,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*10*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x14; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2611,7 +2611,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*11*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x0c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2624,7 +2624,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*12*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x1c; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2637,7 +2637,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*13*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x08; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2654,7 +2654,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*14*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x18; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2672,7 +2672,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 		i += iroot;			/*15*iroot */
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x10; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);
@@ -2689,7 +2689,7 @@ void radix16_dit_pass	(double a[],             int n, struct complex rt0[], stru
 	  #endif
 		re0=rt0[k1].re;	im0=rt0[k1].im;
 		re1=rt1[k2].re;	im1=rt1[k2].im;
-		rt=re0*re1-im0*im1;	it=re0*im1+im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 	  #ifdef USE_SSE2
 		c_tmp = cc0 + 0x20; s_tmp = c_tmp+1;
 		VEC_DBL_INIT(c_tmp, rt);

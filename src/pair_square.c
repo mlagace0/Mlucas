@@ -91,18 +91,18 @@ void pair_square(double *x1, double *y1, double *x2, double *y2, double c, doubl
 	// H[j]-H~[N-j] = (r1-r2,i1+i2); ()^2 = [(r1-r2)^2-(i1+i2)^2] + 2.I.[(r1-r2).(i1+i2)]
 // calculate 2nd square-like term and store in temp...
 	re = (r2+i2)*(r2-i2);	// re := Re{H(n2-j)^2}
-	im = r2*i2 + i2*r2;		// im := Im{H(n2-j)^2}
+	im = 2.0 * r2 * i2;		// im := Im{H(n2-j)^2}
 // calculate difference terms...
 	r2 = r1 - r2;			// r2 := Re{H(j)-H~(n2-j)}
 	i2 = i1 + i2;			// i2 := Im{H(j)-H~(n2-j)}
 // now calculate 1st square-like term and store back in H(j) slot...
 	tt = (r1+i1)*(r1-i1);		// r1 := Re{H(j)^2}
-	i1 = r1*i1 + i1*r1; r1 = tt;// i1 := Im{H(j)^2}
+	i1 = 2.0 * r1 * i1; r1 = tt;;// i1 := Im{H(j)^2}
 // calculate the complex products to build the second term...
 	tt = (r2+i2)*(r2-i2);		// Re{(H[j] - H~[N/2-j])^2}
-	i2 = r2*i2 + i2*r2; r2 = tt;// Im{(H[j] - H~[N/2-j])^2}
-	tt = (cc*r2 - ss*i2);	// Re{(1 + exp(4*pi*I*j/N)) * (H[j] - H~[N/2-j])^2/4}
-	i2 = (ss*r2 + cc*i2);	// Im{(1 + exp(4*pi*I*j/N)) * (H[j] - H~[N/2-j])^2/4}
+	i2 = 2.0 * r2 * i2; r2 = tt;// Im{(H[j] - H~[N/2-j])^2}
+	tt = fma(cc, r2, -ss * i2);	// Re{(1 + exp(4*pi*I*j/N)) * (H[j] - H~[N/2-j])^2/4}
+	i2 = fma(ss, r2, cc * i2);	// Im{(1 + exp(4*pi*I*j/N)) * (H[j] - H~[N/2-j])^2/4}
 // and now complete and store the results.
 	*x1 = (r1-tt);	// Re{M(j)}
 	*y1 = (i1-i2);	// Im{M(j)}
@@ -138,21 +138,21 @@ void pair_mul(
 	Store H~I~ in I
 */
 // calculate 2nd square-like term and store in temp...
-	re = r2*r4 - i2*i4;	// re := Re{H(n2-j)*I(n2-j)}
-	im = r2*i4 + i2*r4;	// im := Im{H(n2-j)*I(n2-j)}
+	re = fma(r2, r4, -i2 * i4);	// re := Re{H(n2-j)*I(n2-j)}
+	im = fma(r2, i4, i2 * r4);	// im := Im{H(n2-j)*I(n2-j)}
 // calculate difference terms...
 	r2 = r1 - r2;		// r2 := Re{H(j)-H~(n2-j)}
 	i2 = i1 + i2;		// i2 := Im{H(j)-H~(n2-j)}
 	r4 = r3 - r4;		// r4 := Re{I(j)-I~(n2-j)}
 	i4 = i3 + i4;		// i4 := Im{I(j)-I~(n2-j)}
 // now calculate 1st square-like term and store back in H(j) slot...
-	tt = r1*r3 - i1*i3;			// r1 := Re{H(j)*I(j)}
-	i1 = r1*i3 + i1*r3; r1 = tt;// i1 := Im{H(j)*I(j)}
+	tt = fma(r1, r3, -i1 * i3);			// r1 := Re{H(j)*I(j)}
+	i1 = fma(r1, i3, i1 * r3); r1 = tt;// i1 := Im{H(j)*I(j)}
 // calculate the complex products to build the second term...
-	tt = r2*r4 - i2*i4;			// Re{(H[j] - H~[N/2-j])*(I[j] - I~[N/2-j])}
-	i2 = r2*i4 + i2*r4; r2 = tt;// Im{(H[j] - H~[N/2-j])*(I[j] - I~[N/2-j])}
-	tt = (cc*r2 - ss*i2);	// Re{(1 + exp(4*pi*I*j/N)) * (H[j] - H~[N/2-j])*(I[j] - I~[N/2-j])/4}
-	i2 = (ss*r2 + cc*i2);	// Im{(1 + exp(4*pi*I*j/N)) * (H[j] - H~[N/2-j])*(I[j] - I~[N/2-j])/4}
+	tt = fma(r2, r4, -i2 * i4);			// Re{(H[j] - H~[N/2-j])*(I[j] - I~[N/2-j])}
+	i2 = fma(r2, i4, i2 * r4); r2 = tt;// Im{(H[j] - H~[N/2-j])*(I[j] - I~[N/2-j])}
+	tt = fma(cc, r2, -ss * i2);	// Re{(1 + exp(4*pi*I*j/N)) * (H[j] - H~[N/2-j])*(I[j] - I~[N/2-j])/4}
+	i2 = fma(ss, r2, cc * i2);	// Im{(1 + exp(4*pi*I*j/N)) * (H[j] - H~[N/2-j])*(I[j] - I~[N/2-j])/4}
 // and now complete and store the results.
 	*x1 = (r1-tt);	// Re{M(j)}
 	*y1 = (i1-i2);	// Im{M(j)}

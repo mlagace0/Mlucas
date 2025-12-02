@@ -453,34 +453,34 @@ The scratch array (2nd input argument) is only needed for data table initializat
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1 = rt;	sA1 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA2 = rt;	sA2 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA4 = rt;	sA4 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA8 = rt;	sA8 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA13= rt;	sA13= it;
 
 		/* c3,5 */
@@ -555,34 +555,34 @@ The scratch array (2nd input argument) is only needed for data table initializat
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1 = rt;	sA1 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA2 = rt;	sA2 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA4 = rt;	sA4 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA8 = rt;	sA8 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA13= rt;	sA13= it;
 
 		/* c3,5 */
@@ -646,34 +646,34 @@ The scratch array (2nd input argument) is only needed for data table initializat
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1 = rt;	sA1 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA2 = rt;	sA2 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA4 = rt;	sA4 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA8 = rt;	sA8 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA13= rt;	sA13= it;
 
 		/* c3,5 */
@@ -716,34 +716,34 @@ The scratch array (2nd input argument) is only needed for data table initializat
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1 = rt;	sA1 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA2 = rt;	sA2 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA4 = rt;	sA4 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA8 = rt;	sA8 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA13= rt;	sA13= it;
 
 		/* c3,5 */
@@ -788,34 +788,34 @@ The scratch array (2nd input argument) is only needed for data table initializat
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1 = rt;	sA1 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA2 = rt;	sA2 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA4 = rt;	sA4 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA8 = rt;	sA8 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA13= rt;	sA13= it;
 
 		/* c3,5 */
@@ -858,34 +858,34 @@ The scratch array (2nd input argument) is only needed for data table initializat
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1 = rt;	sA1 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA2 = rt;	sA2 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA4 = rt;	sA4 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA8 = rt;	sA8 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA13= rt;	sA13= it;
 
 		/* c3,5 */
@@ -928,34 +928,34 @@ The scratch array (2nd input argument) is only needed for data table initializat
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1 = rt;	sA1 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA2 = rt;	sA2 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA4 = rt;	sA4 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA8 = rt;	sA8 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA13= rt;	sA13= it;
 
 		/* c3,5 */
@@ -998,34 +998,34 @@ The scratch array (2nd input argument) is only needed for data table initializat
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1 = rt;	sA1 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA2 = rt;	sA2 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA4 = rt;	sA4 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA8 = rt;	sA8 = it;
 
 		k1=(l & NRTM1);		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA13= rt;	sA13= it;
 
 		/* c3,5 */
@@ -1463,7 +1463,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA1 =rt;	sA1 =it;
 
 	RT = rt;	IT = it;	// Save copies of these 2 for wrapper step
@@ -1473,7 +1473,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA2 =rt;	sA2 =it;
 
 		k1=(l & NRTM1);
@@ -1481,7 +1481,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA4 =rt;	sA4 =it;
 
 		k1=(l & NRTM1);
@@ -1489,14 +1489,14 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA8 =rt;	sA8 =it;
 
 		k1=(l & NRTM1);
 		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cA13=rt;	sA13=it;
 		/* c3,5 */
 		t1=cA1 *cA4 ;	t2=cA1 *sA4 ;	rt=sA1 *cA4 ;	it=sA1 *sA4;
@@ -1527,7 +1527,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += iroot;		 /* 2*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB1 =rt;	sB1 =it;
 
 	  if(j1 == 0) {   // The j1 = 0 case is special...need to overwrite above A-versions of saved trigs with B-data
@@ -1539,7 +1539,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += (iroot << 1);	/* 4*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB2 =rt;	sB2 =it;
 
 		k1=(l & NRTM1);
@@ -1547,7 +1547,7 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += (iroot << 2);	/* 8*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB4 =rt;	sB4 =it;
 
 		k1=(l & NRTM1);
@@ -1555,14 +1555,14 @@ jump_in:	/* Entry point for all blocks but the first. */
 		l += (iroot << 2) + iroot;	/* 13*iroot */
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB8 =rt;	sB8 =it;
 
 		k1=(l & NRTM1);
 		k2=(l >> NRT_BITS);
 		re0 = rt0[k1].re;	im0 = rt0[k1].im;
 		re1 = rt1[k2].re;	im1 = rt1[k2].im;
-		rt = re0*re1 - im0*im1;	it = re0*im1 + im0*re1;
+		rt = fma(re0, re1, -im0 * im1);	it = fma(re0, im1, im0 * re1);
 		cB13=rt;	sB13=it;
 		/* c3,5 */
 		t1=cB1 *cB4 ;	t2=cB1 *sB4 ;	rt=sB1 *cB4 ;	it=sB1 *sB4;
