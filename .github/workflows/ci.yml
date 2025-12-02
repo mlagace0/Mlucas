@@ -20,7 +20,7 @@ jobs:
     env:
       CC: ${{ matrix.cc }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install
       run: |
         sudo apt-get update -y
@@ -69,7 +69,7 @@ jobs:
             cd ../obj_NOSIMD
         fi
         bash -- ../config-fermat.sh -cpu "0:$(( $(nproc --all) - 1 ))"
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       if: always()
       with:
         name: ${{ matrix.os }}_${{ matrix.cc }}_mlucas
@@ -87,7 +87,7 @@ jobs:
     env:
       CC: ${{ matrix.cc }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Before script
       run: |
         sed -i 's/-DUSE_THREADS//' makemake.sh
@@ -123,11 +123,67 @@ jobs:
             cd ../obj_NOSIMD
         fi
         bash -- ../config-fermat.sh
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       if: always()
       with:
         name: ${{ matrix.os }}_${{ matrix.cc }}_singlethreaded_mlucas
         path: ${{ github.workspace }}
+
+  Linux-old:
+    name: Mlucas Linux old
+
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    continue-on-error: true
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm]
+        container: ["ubuntu:16.04"]
+        cc: [gcc, clang]
+      fail-fast: false
+    env:
+      CC: ${{ matrix.cc }}
+    steps:
+    # - uses: actions/checkout@v6
+    - name: Install
+      run: |
+        apt-get update
+        apt-get install -y wget build-essential libgmp-dev libhwloc-dev
+    - name: Install Clang
+      if: ${{ matrix.cc == 'clang' }}
+      run: |
+        apt-get install -y clang
+    - name: Download
+      run: |
+        wget "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/archive/$GITHUB_SHA.tar.gz"
+        tar -xzvf "$GITHUB_SHA.tar.gz" --strip-components=1
+    - name: Before script
+      run: |
+        $CC --version
+    - name: Script
+      shell: bash
+      run: |
+        set -x
+        MODES=( '' NOSIMD )
+        if [[ $HOSTTYPE == aarch64 ]]; then
+            MODES+=( ASIMD )
+        else
+            MODES+=( SSE2 AVX AVX2 AVX512 )
+        fi
+        for mode in "${MODES[@]}"; do
+            echo -e "\n$mode\n"
+            bash -e -o pipefail -- makemake.sh use_hwloc $mode
+            (cd obj${mode:+_$mode}; make clean)
+            for word in '' 1word 2word 3word 4word nword; do
+                echo -e "\nMfactor $word\n"
+                bash -e -o pipefail -- makemake.sh mfac $word $mode || true
+                (
+                    cd obj_mfac${mode:+_$mode}
+                    make clean
+                    mv -v build.log build_${word}.log
+                )
+            done
+        done
 
   ASan-Linux:
     name: AddressSanitizer Linux
@@ -140,7 +196,7 @@ jobs:
     env:
       CC: ${{ matrix.cc }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install
       run: |
         sudo apt-get update -y
@@ -172,7 +228,7 @@ jobs:
     env:
       CC: ${{ matrix.cc }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install
       run: |
         sudo apt-get update -y
@@ -195,7 +251,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: GCC analyzer
       run: |
         set -x
@@ -211,7 +267,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install
       run: |
         sudo apt-get update -y
@@ -230,7 +286,7 @@ jobs:
 
     runs-on: ubuntu-22.04 # ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install
       run: |
         sudo apt-get update -y
@@ -249,7 +305,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: ShellCheck
       run: shopt -s globstar; shellcheck -o avoid-nullary-conditions,check-extra-masked-returns,check-set-e-suppressed,deprecate-which,quote-safe-variables,require-double-brackets -s bash **/*.sh
       continue-on-error: true
@@ -260,10 +316,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-13, macos-14, macos-15]
+        os: [macos-13, macos-14, macos-15, macos-26]
       fail-fast: false
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install
       run: |
         brew install hwloc
@@ -310,7 +366,7 @@ jobs:
             cd ../obj_NOSIMD
         fi
         bash -- ../config-fermat.sh -cpu "0:$(( $(sysctl -n hw.ncpu) - 1 ))"
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       if: always()
       with:
         name: ${{ matrix.os }}_mlucas
@@ -325,7 +381,7 @@ jobs:
         os: [macos-13, macos-latest]
       fail-fast: false
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Before script
       run: |
         sed -i '' 's/-DUSE_THREADS//' makemake.sh
@@ -361,7 +417,7 @@ jobs:
             cd ../obj_NOSIMD
         fi
         bash -- ../config-fermat.sh
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       if: always()
       with:
         name: ${{ matrix.os }}_singlethreaded_mlucas
@@ -372,7 +428,7 @@ jobs:
 
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install
       run: |
         brew install hwloc
@@ -398,7 +454,7 @@ jobs:
 
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install
       run: |
         brew install hwloc
@@ -432,7 +488,7 @@ jobs:
       CC: ${{ matrix.cc }}
       PACKAGE_PREFIX: mingw-w64-${{ endsWith(matrix.os, '-arm') && 'clang-aarch64' || 'x86_64' }}-
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Before Install
       run: |
         echo "C:\msys64\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
@@ -489,7 +545,7 @@ jobs:
             cd ../obj_NOSIMD
         fi
         bash -- ../config-fermat.sh -cpu "0:$(( NUMBER_OF_PROCESSORS - 1 ))"
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       if: always()
       with:
         name: ${{ matrix.os }}_${{ matrix.cc }}_mlucas
@@ -504,7 +560,7 @@ jobs:
       CC: clang
       PACKAGE_PREFIX: mingw-w64-clang-x86_64-
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Before Install
       run: |
         echo "C:\msys64\clang64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
